@@ -3,587 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chess engine — Tyler Luo</title>
-<style>
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0; width: 100%; height: 100%;
-    background: #0D1B2A;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    overflow: hidden;
-  }
-  #wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px; width: 100%; }
-  #status {
-    color: #F4F1E8; font-size: 12px; letter-spacing: 0.03em;
-    display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center;
-  }
-  #message { color: #E8A33D; font-size: 12px; min-height: 16px; }
-  canvas {
-    border: 1px solid rgba(244,241,232,0.32);
-    border-radius: 3px;
-    max-width: min(90vmin, 420px);
-    height: auto;
-    touch-action: none;
-    cursor: pointer;
-  }
-  .controls { display: flex; gap: 6px; }
-  button {
-    font-family: inherit; font-size: 11px;
-    background: transparent; color: #F4F1E8;
-    border: 1px solid rgba(244,241,232,0.32); border-radius: 3px;
-    padding: 5px 10px; cursor: pointer;
-  }
-  button:hover { border-color: #5FC8BE; color: #5FC8BE; }
-  button.active { background: #E8A33D; color: #0D1B2A; border-color: #E8A33D; }
-</style>
+<title>Tyler Luo — Portfolio</title>
+<meta name="description" content="Computer engineering portfolio — embedded systems, security, and software projects.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="wrap">
-  <div id="status">
-    <span id="turnLabel">Turn: White</span>
-    <span id="depthLabel">Depth: 2</span>
-    <div class="controls">
-      <button data-depth="1">1</button>
-      <button data-depth="2" class="active">2</button>
-      <button data-depth="3">3</button>
-      <button id="resetBtn">Reset</button>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a href="#top" class="nav__mark">TL<span class="nav__mark-dot">.</span></a>
+    <nav class="nav__links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav__cta">Get in touch</a>
+    <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile" id="navMobile">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__frame" aria-hidden="true">
+    <span class="tick tick--tl"></span>
+    <span class="tick tick--tr"></span>
+    <span class="tick tick--bl"></span>
+    <span class="tick tick--br"></span>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__main">
+      <p class="eyebrow">// portfolio &mdash; rev. 2026.08</p>
+      <h1 class="hero__name">Tyler Luo<span class="hero__cursor">_</span></h1>
+      <p class="hero__role">Computer Engineer &mdash; Georgia Tech '26</p>
+      <p class="hero__tagline">
+        I work at the boundary of hardware and software &mdash; embedded
+        systems, FPGAs, and the security issues that come with both.
+        Below are a few projects with screenshots and short demo clips,
+        so you can see them running instead of just reading about them.
+      </p>
+      <div class="hero__actions">
+        <a href="#work" class="btn btn--primary">View projects</a>
+        <a href="/resume.pdf" class="btn btn--ghost">Download resume</a>
+      </div>
+    </div>
+
+    <aside class="spec-card" aria-label="Quick facts">
+      <p class="spec-card__label">SPEC SHEET</p>
+      <dl class="spec-card__list">
+        <div class="spec-card__row">
+          <dt>Status</dt>
+          <dd><span class="dot dot--live"></span>Open to work</dd>
+        </div>
+        <div class="spec-card__row">
+          <dt>Based in</dt>
+          <dd>Atlanta, GA</dd>
+        </div>
+        <div class="spec-card__row">
+          <dt>Focus</dt>
+          <dd>Embedded Systems / Security</dd>
+        </div>
+        <div class="spec-card__row">
+          <dt>Stack</dt>
+          <dd>C++ · VHDL · Python</dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work" id="work">
+  <div class="section-head">
+    <p class="eyebrow">// selected work</p>
+    <h2>Projects</h2>
+    <p class="section-head__sub">
+      Each figure below includes a screenshot or a short demo clip.
+      Edit <code>PROJECTS</code> in <code>script.js</code> to add your own.
+    </p>
+  </div>
+
+  <div class="project-list" id="projectList">
+    <!-- Project figures are rendered here by script.js from the PROJECTS array -->
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="about__inner">
+    <div class="about__text">
+      <p class="eyebrow">// about</p>
+      <h2>A little more context</h2>
+      <p>
+        I'm a computer engineering student at Georgia Tech, in the
+        Cybersecurity &amp; Information Internetworks threads. My internship
+        work has ranged from network management software at Ciena, to
+        FPGA-based control systems at Luon Energy, to data tooling at
+        4Earth &mdash; I like projects that move between low-level hardware
+        and the software layered on top of it.
+      </p>
+      <p>
+        Outside of coursework and internships, I build things that combine
+        hardware and code: embedded game systems, safety sensors, side-channel
+        security research. Currently looking at full-time computer
+        engineering roles, especially ones touching embedded systems or
+        security.
+      </p>
+    </div>
+
+    <div class="about__datasheet">
+      <p class="spec-card__label">SKILLS</p>
+      <div class="skill-group">
+        <p class="skill-group__label">Languages</p>
+        <div class="chip-row">
+          <span class="chip">C++</span>
+          <span class="chip">C</span>
+          <span class="chip">Python</span>
+          <span class="chip">Java</span>
+          <span class="chip">VHDL</span>
+          <span class="chip">Verilog</span>
+          <span class="chip">SQL</span>
+          <span class="chip">C#</span>
+          <span class="chip">CUDA</span>
+          <span class="chip">RISC-V / MIPS Assembly</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group__label">Dev Tools</p>
+        <div class="chip-row">
+          <span class="chip">Quartus</span>
+          <span class="chip">Visual Studio</span>
+          <span class="chip">Mbed Studio</span>
+          <span class="chip">IntelliJ</span>
+          <span class="chip">Eclipse</span>
+          <span class="chip">Linux (Ubuntu)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group__label">Hardware</p>
+        <div class="chip-row">
+          <span class="chip">FPGAs</span>
+          <span class="chip">Oscilloscopes</span>
+          <span class="chip">ARM Mbed</span>
+          <span class="chip">ChipWhisperer</span>
+          <span class="chip">Solderless Breadboard</span>
+        </div>
+      </div>
     </div>
   </div>
-  <canvas id="board" width="480" height="480"></canvas>
-  <div id="message"></div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact__inner">
+    <p class="eyebrow">// contact</p>
+    <h2>Let's talk</h2>
+    <p class="contact__sub">
+      The fastest way to reach me is email. Links below.
+    </p>
+    <div class="contact__links">
+      <a href="mailto:tyler.luo789@gmail.com" class="contact__link">
+        <span class="contact__link-label">Email</span>
+        <span class="contact__link-value">tyler.luo789@gmail.com</span>
+      </a>
+      <a href="https://github.com/Tyler-eclipse" target="_blank" rel="noopener" class="contact__link">
+        <span class="contact__link-label">GitHub</span>
+        <span class="contact__link-value">github.com/Tyler-eclipse</span>
+      </a>
+      <a href="https://www.linkedin.com/in/tyler-luo-b75244252" target="_blank" rel="noopener" class="contact__link">
+        <span class="contact__link-label">LinkedIn</span>
+        <span class="contact__link-value">linkedin.com/in/tyler-luo</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Built and maintained by Tyler Luo &mdash; rev. 2026.08</p>
+  <a href="#top" class="footer__top">Back to top ↑</a>
+</footer>
+
+<!-- ============ LIGHTBOX (used for photo galleries) ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
 </div>
 
-<script>
-const PIECE_VALUES = {
-  'P':100,'N':320,'B':330,'R':500,'Q':900,'K':0,
-  'p':-100,'n':-320,'b':-330,'r':-500,'q':-900,'k':0,
-  '.':0
-};
-
-function inBounds(r,c){ return r>=0 && r<8 && c>=0 && c<8; }
-function colorOf(p){ if(p==='.') return null; return p===p.toUpperCase() ? 'w':'b'; }
-function enemyColor(color){ return color==='w' ? 'b':'w'; }
-
-function findKing(board,color){
-  const k = color==='w' ? 'K':'k';
-  for(let r=0;r<8;r++) for(let c=0;c<8;c++) if(board[r][c]===k) return [r,c];
-  return null;
-}
-
-function initialState(){
-  return { ep:null, castle:{wK:true,wQ:true,bK:true,bQ:true} };
-}
-
-function isSquareAttacked(board, sq, byColor){
-  const [r,c]=sq;
-  if(byColor==='w'){
-    for(const dc of [-1,1]){
-      const rr=r+1, cc=c+dc;
-      if(inBounds(rr,cc) && board[rr][cc]==='P') return true;
-    }
-  } else {
-    for(const dc of [-1,1]){
-      const rr=r-1, cc=c+dc;
-      if(inBounds(rr,cc) && board[rr][cc]==='p') return true;
-    }
-  }
-  const knight = byColor==='w' ? 'N':'n';
-  for(const [dr,dc] of [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]]){
-    const rr=r+dr, cc=c+dc;
-    if(inBounds(rr,cc) && board[rr][cc]===knight) return true;
-  }
-  const king = byColor==='w' ? 'K':'k';
-  for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++){
-    if(dr===0&&dc===0) continue;
-    const rr=r+dr, cc=c+dc;
-    if(inBounds(rr,cc) && board[rr][cc]===king) return true;
-  }
-  const bishops = byColor==='w' ? new Set(['B','Q']) : new Set(['b','q']);
-  for(const [dr,dc] of [[-1,-1],[-1,1],[1,-1],[1,1]]){
-    let rr=r+dr, cc=c+dc;
-    while(inBounds(rr,cc)){
-      const p=board[rr][cc];
-      if(p!=='.'){ if(bishops.has(p)) return true; break; }
-      rr+=dr; cc+=dc;
-    }
-  }
-  const rooks = byColor==='w' ? new Set(['R','Q']) : new Set(['r','q']);
-  for(const [dr,dc] of [[-1,0],[1,0],[0,-1],[0,1]]){
-    let rr=r+dr, cc=c+dc;
-    while(inBounds(rr,cc)){
-      const p=board[rr][cc];
-      if(p!=='.'){ if(rooks.has(p)) return true; break; }
-      rr+=dr; cc+=dc;
-    }
-  }
-  return false;
-}
-
-function mkMove(fr,to,opts){
-  opts = opts || {};
-  return { fr, to, promo: opts.promo || null, isCastle: !!opts.isCastle, isEnPassant: !!opts.isEnPassant };
-}
-
-function makeMove(board, state, mv){
-  const [frR,frC]=mv.fr;
-  const [toR,toC]=mv.to;
-  const piece = board[frR][frC];
-
-  const undo = {
-    captured: board[toR][toC],
-    prevEp: state.ep,
-    prevCastle: Object.assign({}, state.castle),
-    rookMove: null,
-    epCapturedSquare: null,
-  };
-
-  state.ep = null;
-
-  if(mv.isEnPassant){
-    const capR=frR, capC=toC;
-    undo.captured = board[capR][capC];
-    undo.epCapturedSquare=[capR,capC];
-    board[capR][capC]='.';
-  }
-
-  board[toR][toC]=piece;
-  board[frR][frC]='.';
-
-  if(mv.isCastle){
-    if(piece==='K'){
-      if(toC===6){ board[7][5]=board[7][7]; board[7][7]='.'; undo.rookMove=[[7,7],[7,5]]; }
-      else { board[7][3]=board[7][0]; board[7][0]='.'; undo.rookMove=[[7,0],[7,3]]; }
-    } else if(piece==='k'){
-      if(toC===6){ board[0][5]=board[0][7]; board[0][7]='.'; undo.rookMove=[[0,7],[0,5]]; }
-      else { board[0][3]=board[0][0]; board[0][0]='.'; undo.rookMove=[[0,0],[0,3]]; }
-    }
-  }
-
-  if(piece==='P' && frR===6 && toR===4) state.ep=[5,frC];
-  else if(piece==='p' && frR===1 && toR===3) state.ep=[2,frC];
-
-  if(piece==='K'){ state.castle.wK=false; state.castle.wQ=false; }
-  else if(piece==='k'){ state.castle.bK=false; state.castle.bQ=false; }
-
-  if(piece==='R'){
-    if(frR===7&&frC===0) state.castle.wQ=false;
-    else if(frR===7&&frC===7) state.castle.wK=false;
-  } else if(piece==='r'){
-    if(frR===0&&frC===0) state.castle.bQ=false;
-    else if(frR===0&&frC===7) state.castle.bK=false;
-  }
-
-  let capturedSquare = [toR,toC];
-  if(mv.isEnPassant) capturedSquare = undo.epCapturedSquare;
-  const capturedPiece = undo.captured;
-  if(capturedPiece==='R'){
-    if(capturedSquare[0]===7&&capturedSquare[1]===0) state.castle.wQ=false;
-    else if(capturedSquare[0]===7&&capturedSquare[1]===7) state.castle.wK=false;
-  } else if(capturedPiece==='r'){
-    if(capturedSquare[0]===0&&capturedSquare[1]===0) state.castle.bQ=false;
-    else if(capturedSquare[0]===0&&capturedSquare[1]===7) state.castle.bK=false;
-  }
-
-  if(mv.promo!==null) board[toR][toC]=mv.promo;
-
-  return undo;
-}
-
-function unmakeMove(board, state, mv, undo){
-  const [frR,frC]=mv.fr;
-  const [toR,toC]=mv.to;
-
-  state.ep = undo.prevEp;
-  state.castle = Object.assign({}, undo.prevCastle);
-
-  const movedPiece = board[toR][toC];
-  let originalPiece = movedPiece;
-  if(mv.promo!==null){
-    originalPiece = movedPiece===movedPiece.toUpperCase() ? 'P':'p';
-  }
-  board[frR][frC]=originalPiece;
-
-  if(mv.isEnPassant){
-    board[toR][toC]='.';
-    const [capR,capC]=undo.epCapturedSquare;
-    board[capR][capC]=undo.captured;
-  } else {
-    board[toR][toC]=undo.captured;
-  }
-
-  if(undo.rookMove){
-    const [[rfR,rfC],[rtR,rtC]]=undo.rookMove;
-    board[rfR][rfC]=board[rtR][rtC];
-    board[rtR][rtC]='.';
-  }
-}
-
-function genPseudoLegal(board, state, side){
-  const moves=[];
-  for(let r=0;r<8;r++){
-    for(let c=0;c<8;c++){
-      const p=board[r][c];
-      if(p==='.'||colorOf(p)!==side) continue;
-
-      if(p==='P'||p==='p'){
-        const dir = p==='P' ? -1: 1;
-        const startRow = p==='P' ? 6:1;
-        const promotionRow = p==='P' ? 0:7;
-        const promoPiece = p==='P' ? 'Q':'q';
-
-        let rr=r+dir;
-        if(inBounds(rr,c) && board[rr][c]==='.'){
-          if(rr===promotionRow) moves.push(mkMove([r,c],[rr,c],{promo:promoPiece}));
-          else moves.push(mkMove([r,c],[rr,c]));
-
-          const rr2=r+2*dir;
-          if(r===startRow && inBounds(rr2,c) && board[rr2][c]==='.'){
-            moves.push(mkMove([r,c],[rr2,c]));
-          }
-        }
-
-        for(const dc of [-1,1]){
-          const cc=c+dc;
-          const rr3=r+dir;
-          if(!inBounds(rr3,cc)) continue;
-          const target=board[rr3][cc];
-          if(target!=='.' && colorOf(target)===enemyColor(side)){
-            if(rr3===promotionRow) moves.push(mkMove([r,c],[rr3,cc],{promo:promoPiece}));
-            else moves.push(mkMove([r,c],[rr3,cc]));
-          }
-          if(state.ep && state.ep[0]===rr3 && state.ep[1]===cc){
-            const adj=board[r][cc];
-            if(adj!=='.' && colorOf(adj)===enemyColor(side) && adj.toLowerCase()==='p'){
-              moves.push(mkMove([r,c],[rr3,cc],{isEnPassant:true}));
-            }
-          }
-        }
-      } else if(p==='N'||p==='n'){
-        for(const [dr,dc] of [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]]){
-          const rr=r+dr, cc=c+dc;
-          if(!inBounds(rr,cc)) continue;
-          const target=board[rr][cc];
-          if(target==='.'||colorOf(target)===enemyColor(side)) moves.push(mkMove([r,c],[rr,cc]));
-        }
-      } else if('BbRrQq'.indexOf(p) !== -1){
-        let dirs=[];
-        const lower=p.toLowerCase();
-        if(lower==='b'||lower==='q') dirs=dirs.concat([[-1,-1],[-1,1],[1,-1],[1,1]]);
-        if(lower==='r'||lower==='q') dirs=dirs.concat([[-1,0],[1,0],[0,-1],[0,1]]);
-        for(const [dr,dc] of dirs){
-          let rr=r+dr, cc=c+dc;
-          while(inBounds(rr,cc)){
-            const target=board[rr][cc];
-            if(target==='.'){ moves.push(mkMove([r,c],[rr,cc])); }
-            else {
-              if(colorOf(target)===enemyColor(side)) moves.push(mkMove([r,c],[rr,cc]));
-              break;
-            }
-            rr+=dr; cc+=dc;
-          }
-        }
-      } else if(p==='K'||p==='k'){
-        for(let dr=-1;dr<=1;dr++) for(let dc=-1;dc<=1;dc++){
-          if(dr===0&&dc===0) continue;
-          const rr=r+dr, cc=c+dc;
-          if(!inBounds(rr,cc)) continue;
-          const target=board[rr][cc];
-          if(target==='.'||colorOf(target)===enemyColor(side)) moves.push(mkMove([r,c],[rr,cc]));
-        }
-
-        if(side==='w' && r===7 && c===4){
-          if(state.castle.wK){
-            if(board[7][5]==='.'&&board[7][6]==='.'&&board[7][7]==='R'){
-              if(!isSquareAttacked(board,[7,4],'b') && !isSquareAttacked(board,[7,5],'b') && !isSquareAttacked(board,[7,6],'b')){
-                moves.push(mkMove([7,4],[7,6],{isCastle:true}));
-              }
-            }
-          }
-          if(state.castle.wQ){
-            if(board[7][1]==='.'&&board[7][2]==='.'&&board[7][3]==='.'&&board[7][0]==='R'){
-              if(!isSquareAttacked(board,[7,4],'b') && !isSquareAttacked(board,[7,3],'b') && !isSquareAttacked(board,[7,2],'b')){
-                moves.push(mkMove([7,4],[7,2],{isCastle:true}));
-              }
-            }
-          }
-        } else if(side==='b' && r===0 && c===4){
-          if(state.castle.bK){
-            if(board[0][5]==='.'&&board[0][6]==='.'&&board[0][7]==='r'){
-              if(!isSquareAttacked(board,[0,4],'w') && !isSquareAttacked(board,[0,5],'w') && !isSquareAttacked(board,[0,6],'w')){
-                moves.push(mkMove([0,4],[0,6],{isCastle:true}));
-              }
-            }
-          }
-          if(state.castle.bQ){
-            if(board[0][1]==='.'&&board[0][2]==='.'&&board[0][3]==='.'&&board[0][0]==='r'){
-              if(!isSquareAttacked(board,[0,4],'w') && !isSquareAttacked(board,[0,3],'w') && !isSquareAttacked(board,[0,2],'w')){
-                moves.push(mkMove([0,4],[0,2],{isCastle:true}));
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  return moves;
-}
-
-function genLegalMoves(board, state, side){
-  const legal=[];
-  for(const mv of genPseudoLegal(board,state,side)){
-    const undo=makeMove(board,state,mv);
-    const ksq=findKing(board,side);
-    const ok = ksq && !isSquareAttacked(board,ksq,enemyColor(side));
-    unmakeMove(board,state,mv,undo);
-    if(ok) legal.push(mv);
-  }
-  return legal;
-}
-
-function orderMoves(board, moves){
-  return moves.slice().sort((a,b)=> Math.abs(PIECE_VALUES[board[b.to[0]][b.to[1]]]) - Math.abs(PIECE_VALUES[board[a.to[0]][a.to[1]]]));
-}
-
-function evaluate(board, state){
-  let score=0;
-  for(let r=0;r<8;r++) for(let c=0;c<8;c++){
-    const p=board[r][c];
-    if(p==='.') continue;
-    score+=PIECE_VALUES[p];
-    if(r>=2&&r<=5&&c>=2&&c<=5) score += (p===p.toUpperCase()) ? 15 : -15;
-    if(p==='N'&&r<7) score+=15;
-    if(p==='B'&&r<7) score+=15;
-    if(p==='n'&&r>0) score-=15;
-    if(p==='b'&&r>0) score-=15;
-  }
-  const whiteMoves=genLegalMoves(board,state,'w').length;
-  const blackMoves=genLegalMoves(board,state,'b').length;
-  score += 2*(whiteMoves-blackMoves);
-  return score;
-}
-
-function alphabeta(board, state, side, depth, alpha, beta){
-  const moves=orderMoves(board, genLegalMoves(board,state,side));
-  if(depth===0 || moves.length===0){
-    const ksq=findKing(board,side);
-    if(moves.length===0 && ksq && isSquareAttacked(board,ksq,enemyColor(side))){
-      return side==='w' ? -99999 : 99999;
-    }
-    return evaluate(board,state);
-  }
-  if(side==='w'){
-    let best=-1e9;
-    for(const mv of moves){
-      const undo=makeMove(board,state,mv);
-      const val=alphabeta(board,state,'b',depth-1,alpha,beta);
-      unmakeMove(board,state,mv,undo);
-      best=Math.max(best,val);
-      alpha=Math.max(alpha,val);
-      if(beta<=alpha) break;
-    }
-    return best;
-  } else {
-    let best=1e9;
-    for(const mv of moves){
-      const undo=makeMove(board,state,mv);
-      const val=alphabeta(board,state,'w',depth-1,alpha,beta);
-      unmakeMove(board,state,mv,undo);
-      best=Math.min(best,val);
-      beta=Math.min(beta,val);
-      if(beta<=alpha) break;
-    }
-    return best;
-  }
-}
-
-function chooseEngineMove(board, state, side, depth){
-  const moves=genLegalMoves(board,state,side);
-  if(moves.length===0) return null;
-  let bestMoves=[];
-  if(side==='w'){
-    let bestVal=-1e9;
-    for(const mv of moves){
-      const undo=makeMove(board,state,mv);
-      const val=alphabeta(board,state,'b',depth-1,-1e9,1e9);
-      unmakeMove(board,state,mv,undo);
-      if(val>bestVal){ bestVal=val; bestMoves=[mv]; }
-      else if(val===bestVal) bestMoves.push(mv);
-    }
-  } else {
-    let bestVal=1e9;
-    for(const mv of moves){
-      const undo=makeMove(board,state,mv);
-      const val=alphabeta(board,state,'w',depth-1,-1e9,1e9);
-      unmakeMove(board,state,mv,undo);
-      if(val<bestVal){ bestVal=val; bestMoves=[mv]; }
-      else if(val===bestVal) bestMoves.push(mv);
-    }
-  }
-  return bestMoves[Math.floor(Math.random()*bestMoves.length)];
-}
-
-function initialBoard(){
-  return [
-    ['r','n','b','q','k','b','n','r'],
-    ['p','p','p','p','p','p','p','p'],
-    ['.','.','.','.','.','.','.','.'],
-    ['.','.','.','.','.','.','.','.'],
-    ['.','.','.','.','.','.','.','.'],
-    ['.','.','.','.','.','.','.','.'],
-    ['P','P','P','P','P','P','P','P'],
-    ['R','N','B','Q','K','B','N','R'],
-  ];
-}
-
-const GLYPHS = { 'K':'♚','Q':'♛','R':'♜','B':'♝','N':'♞','P':'♟','k':'♚','q':'♛','r':'♜','b':'♝','n':'♞','p':'♟' };
-
-let board = initialBoard();
-let state = initialState();
-let sideToMove = 'w';
-const playerSide = 'w';
-const engineSide = 'b';
-let selected = null;
-let legalTargets = new Set();
-let depth = 2;
-let message = '';
-
-const canvas = document.getElementById('board');
-const SQ = canvas.width / 8;
-const turnLabel = document.getElementById('turnLabel');
-const depthLabel = document.getElementById('depthLabel');
-const messageEl = document.getElementById('message');
-const ctx = canvas.getContext('2d');
-
-function drawBoard(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let r=0;r<8;r++){
-    for(let c=0;c<8;c++){
-      const x=c*SQ, y=r*SQ;
-      const light=(r+c)%2===0;
-      ctx.fillStyle = light ? '#EBEBD0' : '#5F8A56';
-      ctx.fillRect(x,y,SQ,SQ);
-
-      if(selected && selected[0]===r && selected[1]===c){
-        ctx.strokeStyle='#E8A33D'; ctx.lineWidth=4;
-        ctx.strokeRect(x+2,y+2,SQ-4,SQ-4);
-      }
-
-      if(legalTargets.has(r+','+c)){
-        ctx.beginPath();
-        ctx.arc(x+SQ/2,y+SQ/2, SQ*0.12, 0, Math.PI*2);
-        ctx.fillStyle='rgba(20,20,20,0.55)';
-        ctx.fill();
-      }
-
-      const p=board[r][c];
-      if(p!=='.'){
-        ctx.font = `${Math.floor(SQ*0.7)}px serif`;
-        ctx.textAlign='center';
-        ctx.textBaseline='middle';
-        const isWhite = p===p.toUpperCase();
-        if(isWhite){
-          ctx.lineWidth=1.4;
-          ctx.strokeStyle='#111820';
-          ctx.strokeText(GLYPHS[p], x+SQ/2, y+SQ/2+2);
-          ctx.fillStyle='#F4F1E8';
-        } else {
-          ctx.fillStyle='#111820';
-        }
-        ctx.fillText(GLYPHS[p], x+SQ/2, y+SQ/2+2);
-      }
-    }
-  }
-}
-
-function gameStatus(){
-  const moves=genLegalMoves(board,state,sideToMove);
-  if(moves.length>0) return null;
-  const ksq=findKing(board,sideToMove);
-  if(ksq && isSquareAttacked(board,ksq,enemyColor(sideToMove))){
-    return sideToMove==='w' ? 'Checkmate — black wins.' : 'Checkmate — white wins.';
-  }
-  return 'Stalemate.';
-}
-
-function refresh(){
-  drawBoard();
-  turnLabel.textContent = 'Turn: ' + (sideToMove==='w' ? 'White' : 'Black');
-  const status = gameStatus();
-  message = status || '';
-  messageEl.textContent = message;
-  if(!message && sideToMove===engineSide){
-    messageEl.textContent = 'Engine thinking…';
-    setTimeout(engineMove, 30);
-  }
-}
-
-function engineMove(){
-  const mv = chooseEngineMove(board, state, engineSide, depth);
-  if(mv) makeMove(board, state, mv);
-  sideToMove = enemyColor(sideToMove);
-  selected = null;
-  legalTargets = new Set();
-  drawBoard();
-  turnLabel.textContent = 'Turn: ' + (sideToMove==='w' ? 'White' : 'Black');
-  const status = gameStatus();
-  message = status || '';
-  messageEl.textContent = message;
-}
-
-canvas.addEventListener('click', (e)=>{
-  if(sideToMove !== playerSide || message) return;
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const x = (e.clientX - rect.left) * scaleX;
-  const y = (e.clientY - rect.top) * scaleY;
-  const c = Math.floor(x / SQ), r = Math.floor(y / SQ);
-  if(r<0||r>7||c<0||c>7) return;
-  const p = board[r][c];
-
-  if(!selected){
-    if(p!=='.' && colorOf(p)===playerSide){
-      selected=[r,c];
-      const moves = genLegalMoves(board,state,playerSide);
-      legalTargets = new Set(moves.filter(mv=>mv.fr[0]===r&&mv.fr[1]===c).map(mv=>mv.to[0]+','+mv.to[1]));
-    }
-  } else {
-    const moves = genLegalMoves(board,state,playerSide);
-    const chosen = moves.find(mv=>mv.fr[0]===selected[0]&&mv.fr[1]===selected[1]&&mv.to[0]===r&&mv.to[1]===c);
-    if(chosen){
-      makeMove(board,state,chosen);
-      sideToMove = enemyColor(sideToMove);
-    }
-    selected=null;
-    legalTargets=new Set();
-  }
-  refresh();
-});
-
-document.querySelectorAll('[data-depth]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    depth = parseInt(btn.dataset.depth,10);
-    document.querySelectorAll('[data-depth]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    depthLabel.textContent = 'Depth: ' + depth;
-  });
-});
-
-document.getElementById('resetBtn').addEventListener('click', ()=>{
-  board=initialBoard(); state=initialState(); sideToMove='w';
-  selected=null; legalTargets=new Set(); message='';
-  refresh();
-});
-
-document.addEventListener('keydown', (e)=>{
-  if(e.key==='r'||e.key==='R') document.getElementById('resetBtn').click();
-  if(e.key==='1') document.querySelector('[data-depth="1"]').click();
-  if(e.key==='2') document.querySelector('[data-depth="2"]').click();
-  if(e.key==='3') document.querySelector('[data-depth="3"]').click();
-});
-
-refresh();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
