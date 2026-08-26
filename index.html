@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<meta name="description" content="Software engineering portfolio — projects, demos, and work.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a href="#top" class="nav__mark">YN<span class="nav__mark-dot">.</span></a>
+    <nav class="nav__links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav__cta">Get in touch</a>
+    <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile" id="navMobile">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__frame" aria-hidden="true">
+    <span class="tick tick--tl"></span>
+    <span class="tick tick--tr"></span>
+    <span class="tick tick--bl"></span>
+    <span class="tick tick--br"></span>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__main">
+      <p class="eyebrow">// portfolio &mdash; rev. 2026.08</p>
+      <h1 class="hero__name">Your Name<span class="hero__cursor">_</span></h1>
+      <p class="hero__role">Software Engineer &mdash; Computer Science</p>
+      <p class="hero__tagline">
+        I build things and document how they work. Below is a set of
+        projects with screenshots and short demo videos &mdash; scroll
+        to see them running, not just described.
+      </p>
+      <div class="hero__actions">
+        <a href="#work" class="btn btn--primary">View projects</a>
+        <a href="/resume.pdf" class="btn btn--ghost">Download resume</a>
+      </div>
+    </div>
+
+    <aside class="spec-card" aria-label="Quick facts">
+      <p class="spec-card__label">SPEC SHEET</p>
+      <dl class="spec-card__list">
+        <div class="spec-card__row">
+          <dt>Status</dt>
+          <dd><span class="dot dot--live"></span>Open to work</dd>
+        </div>
+        <div class="spec-card__row">
+          <dt>Based in</dt>
+          <dd>City, State</dd>
+        </div>
+        <div class="spec-card__row">
+          <dt>Focus</dt>
+          <dd>Full-stack / Systems</dd>
+        </div>
+        <div class="spec-card__row">
+          <dt>Stack</dt>
+          <dd>Python · TypeScript · React</dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work" id="work">
+  <div class="section-head">
+    <p class="eyebrow">// selected work</p>
+    <h2>Projects</h2>
+    <p class="section-head__sub">
+      Each figure below includes a screenshot or a short demo clip.
+      Edit <code>PROJECTS</code> in <code>script.js</code> to add your own.
+    </p>
+  </div>
+
+  <div class="project-list" id="projectList">
+    <!-- Project figures are rendered here by script.js from the PROJECTS array -->
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="about__inner">
+    <div class="about__text">
+      <p class="eyebrow">// about</p>
+      <h2>A little more context</h2>
+      <p>
+        Replace this paragraph with two or three sentences about who you are,
+        what you're studying or working on, and what kind of problems you
+        like solving. Keep it specific &mdash; concrete details read as more
+        credible than broad claims.
+      </p>
+      <p>
+        Second paragraph, optional: mention what you're currently learning,
+        a team you work with, or what you're looking for next
+        (internship, new-grad role, freelance work).
+      </p>
+    </div>
+
+    <div class="about__datasheet">
+      <p class="spec-card__label">SKILLS</p>
+      <div class="skill-group">
+        <p class="skill-group__label">Languages</p>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Java</span>
+          <span class="chip">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group__label">Frameworks</p>
+        <div class="chip-row">
+          <span class="chip">React</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Flask</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group__label">Tools</p>
+        <div class="chip-row">
+          <span class="chip">Git</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Figma</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact__inner">
+    <p class="eyebrow">// contact</p>
+    <h2>Let's talk</h2>
+    <p class="contact__sub">
+      The fastest way to reach me is email. Links below.
+    </p>
+    <div class="contact__links">
+      <a href="mailto:you@email.com" class="contact__link">
+        <span class="contact__link-label">Email</span>
+        <span class="contact__link-value">you@email.com</span>
+      </a>
+      <a href="https://github.com/tyler-eclipse" target="_blank" rel="noopener" class="contact__link">
+        <span class="contact__link-label">GitHub</span>
+        <span class="contact__link-value">github.com/tyler-eclipse</span>
+      </a>
+      <a href="https://linkedin.com/in/your-handle" target="_blank" rel="noopener" class="contact__link">
+        <span class="contact__link-label">LinkedIn</span>
+        <span class="contact__link-value">linkedin.com/in/your-handle</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Built and maintained by Your Name &mdash; rev. 2026.08</p>
+  <a href="#top" class="footer__top">Back to top ↑</a>
+</footer>
+
+<!-- ============ LIGHTBOX (used for photo galleries) ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
