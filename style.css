@@ -175,12 +175,6 @@ img{ max-width: 100%; display: block; }
   font-size: clamp(40px, 6vw, 68px);
   line-height: 1.03;
 }
-.hero__cursor{
-  color: var(--amber);
-  animation: blink 1.1s step-end infinite;
-}
-@keyframes blink{ 50%{ opacity: 0; } }
-
 .hero__role{
   font-family: var(--font-mono);
   font-size: 15px;
