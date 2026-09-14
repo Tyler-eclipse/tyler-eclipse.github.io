@@ -25,43 +25,6 @@
 ========================================================= */
 const PROJECTS = [
   {
-    title: "Hand-Proximity Safety Sensor",
-    tagline: "Senior capstone — real-time alerts before a hand reaches a bandsaw blade.",
-    description:
-      "Designed and built a sensor system that detects when a hand gets too " +
-      "close to a bandsaw blade and fires a real-time alert before contact. " +
-      "Ran the detection and alert logic on a Raspberry Pi 5, improving " +
-      "measured engineer safety by roughly 30% in testing.",
-    stack: ["Raspberry Pi 5", "Python", "Sensors", "Embedded Systems"],
-    image: "", // e.g. "media/safety-sensor.jpg"
-    video: "", // e.g. "media/safety-sensor.mp4"
-    youtube: "",
-    gallery: [],
-    links: {
-      github: "https://github.com/HuansangYng/Senior-Design-Smart-Safety-System",
-      demo: "",
-    },
-  },
-  {
-    title: "Cybersecurity & Embedded Systems",
-    tagline: "Finding side-channel leaks, then closing them.",
-    description:
-      "Used a ChipWhisperer setup to find timing-based side-channel " +
-      "vulnerabilities in embedded hardware through power analysis and " +
-      "fault injection. Then implemented RSA encryption/decryption in VHDL " +
-      "on a DE10 FPGA using modular exponentiation, informed by what the " +
-      "side-channel analysis exposed.",
-    stack: ["VHDL", "FPGA", "ChipWhisperer", "Cryptography"],
-    image: "",
-    video: "",
-    youtube: "",
-    gallery: [],
-    links: {
-      github: "", // add your repo link here
-      demo: "",
-    },
-  },
-  {
     title: "FPS Game Design",
     tagline: "Custom breadboard hardware running a real-time 2D game.",
     description:
