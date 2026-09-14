@@ -90,10 +90,10 @@ function renderViewport(project, index) {
       ? `<img src="${project.image}" alt="${project.title} preview">`
       : `<div class="figure__placeholder">${placeholderSVG}<span>PLAYABLE DEMO — click to load</span></div>`;
     return `
-      <div class="figure__viewport" data-video-wrap>
+      <div class="figure__viewport" data-video-wrap data-fullscreen-on-play="true">
         <span class="figure__badge">FIG. ${figureNumber(index)} — PLAY</span>
         ${posterInner}
-        <iframe class="figure__yt" src="${project.embed}" width="100%" height="100%" style="border:0;display:none" title="${project.title} — playable demo"></iframe>
+        <iframe class="figure__yt" src="${project.embed}" width="100%" height="100%" style="border:0;display:none" title="${project.title} — playable demo" allowfullscreen></iframe>
         <button class="figure__play" aria-label="Load playable demo" data-play-btn>
           ${playSVG}
         </button>
@@ -220,6 +220,14 @@ function wireUpVideos(container) {
       if (media) {
         media.style.display = "block";
         if (media.tagName === "VIDEO") media.play().catch(() => {});
+      }
+      if (wrap.dataset.fullscreenOnPlay === "true" && media) {
+        const requestFs =
+          media.requestFullscreen ||
+          media.webkitRequestFullscreen ||
+          media.mozRequestFullScreen ||
+          media.msRequestFullscreen;
+        if (requestFs) requestFs.call(media).catch(() => {});
       }
     });
   });
