@@ -322,6 +322,23 @@ img{ max-width: 100%; display: block; }
 .figure__placeholder svg{ width: 40px; height: 40px; opacity: 0.5; }
 .figure__placeholder span{ font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-align: center; padding: 0 20px; }
 
+.figure__fullscreen{
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 3;
+  font-size: 16px;
+  line-height: 1;
+  padding: 6px 8px;
+  background: rgba(13,27,42,0.75);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  color: var(--paper);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.figure__fullscreen:hover{ border-color: var(--amber); color: var(--amber); }
+
 .figure__play{
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
