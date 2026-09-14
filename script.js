@@ -53,7 +53,7 @@ const PROJECTS = [
       "uses minimax search with alpha-beta pruning and a heuristic board " +
       "evaluation function to choose moves.",
     stack: ["Python", "PyGame", "Minimax", "Alpha-Beta Pruning"],
-    image: "",
+    image: "media/chess-preview.png",
     video: "",
     youtube: "",
     drive: "",
@@ -86,11 +86,14 @@ function figureNumber(i) {
 
 function renderViewport(project, index) {
   if (project.embed) {
+    const posterInner = project.image
+      ? `<img src="${project.image}" alt="${project.title} preview">`
+      : `<div class="figure__placeholder">${placeholderSVG}<span>PLAYABLE DEMO — click to load</span></div>`;
     return `
       <div class="figure__viewport" data-video-wrap>
         <span class="figure__badge">FIG. ${figureNumber(index)} — PLAY</span>
-        <div class="figure__placeholder">${placeholderSVG}<span>PLAYABLE DEMO — click to load</span></div>
-        <iframe class="figure__yt" src="${project.embed}" style="display:none" title="${project.title} — playable demo"></iframe>
+        ${posterInner}
+        <iframe class="figure__yt" src="${project.embed}" width="100%" height="100%" style="border:0;display:none" title="${project.title} — playable demo"></iframe>
         <button class="figure__play" aria-label="Load playable demo" data-play-btn>
           ${playSVG}
         </button>
