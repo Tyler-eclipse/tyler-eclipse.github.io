@@ -86,17 +86,11 @@ function figureNumber(i) {
 
 function renderViewport(project, index) {
   if (project.embed) {
-    const posterInner = project.image
-      ? `<img src="${project.image}" alt="${project.title} preview">`
-      : `<div class="figure__placeholder">${placeholderSVG}<span>PLAYABLE DEMO — click to load</span></div>`;
     return `
-      <div class="figure__viewport" data-video-wrap data-fullscreen-on-play="true">
+      <div class="figure__viewport" data-video-wrap>
         <span class="figure__badge">FIG. ${figureNumber(index)} — PLAY</span>
-        ${posterInner}
-        <iframe class="figure__yt" src="${project.embed}" width="100%" height="100%" style="border:0;display:none" title="${project.title} — playable demo" allowfullscreen></iframe>
-        <button class="figure__play" aria-label="Load playable demo" data-play-btn>
-          ${playSVG}
-        </button>
+        <iframe class="figure__yt" src="${project.embed}" width="100%" height="100%" style="border:0;display:block" title="${project.title} — playable demo" allowfullscreen></iframe>
+        <button class="figure__fullscreen" aria-label="View fullscreen" data-fullscreen-btn>⛶</button>
         <span class="vp-tick vp-tick--tl"></span>
         <span class="vp-tick vp-tick--br"></span>
       </div>`;
@@ -107,32 +101,24 @@ function renderViewport(project, index) {
   if (hasVideo) {
     let mediaTag = "";
     if (project.youtube) {
-      mediaTag = `<iframe class="figure__yt" width="100%" height="100%" style="border:0;display:none"
-        src="https://www.youtube.com/embed/${project.youtube}?autoplay=1"
+      mediaTag = `<iframe class="figure__yt" width="100%" height="100%" style="border:0;display:block"
+        src="https://www.youtube.com/embed/${project.youtube}"
         allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     } else if (project.drive) {
-      mediaTag = `<iframe class="figure__yt" width="100%" height="100%" style="border:0;display:none"
+      mediaTag = `<iframe class="figure__yt" width="100%" height="100%" style="border:0;display:block"
         src="https://drive.google.com/file/d/${project.drive}/preview"
         allow="autoplay" allowfullscreen></iframe>`;
     } else {
-      mediaTag = `<video controls preload="metadata" style="display:none"
+      mediaTag = `<video controls preload="metadata" style="display:block"
         ${project.image ? `poster="${project.image}"` : ""}>
         <source src="${project.video}" type="video/mp4">
       </video>`;
     }
 
-    const posterInner = project.image
-      ? `<img src="${project.image}" alt="${project.title} preview">`
-      : `<div class="figure__placeholder">${placeholderSVG}<span>DEMO VIDEO — add a video, YouTube ID, or Drive ID in script.js</span></div>`;
-
     return `
       <div class="figure__viewport" data-video-wrap>
         <span class="figure__badge">FIG. ${figureNumber(index)} — DEMO</span>
-        ${posterInner}
         ${mediaTag}
-        <button class="figure__play" aria-label="Play demo video" data-play-btn>
-          ${playSVG}
-        </button>
         <span class="vp-tick vp-tick--tl"></span>
         <span class="vp-tick vp-tick--br"></span>
       </div>`;
@@ -203,32 +189,24 @@ function renderProject(project, index) {
 function renderAllProjects() {
   const container = document.getElementById("projectList");
   container.innerHTML = PROJECTS.map(renderProject).join("");
-  wireUpVideos(container);
+  wireUpFullscreen(container);
   wireUpLightboxTriggers(container);
   observeFigures(container);
 }
 
-/* ---- Video play buttons: swap poster/placeholder for real media on click ---- */
-function wireUpVideos(container) {
-  container.querySelectorAll("[data-play-btn]").forEach((btn) => {
+/* ---- Fullscreen buttons for playable embeds ---- */
+function wireUpFullscreen(container) {
+  container.querySelectorAll("[data-fullscreen-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const wrap = btn.closest("[data-video-wrap]");
-      const media = wrap.querySelector("video, .figure__yt");
-      const poster = wrap.querySelector("img, .figure__placeholder");
-      if (poster) poster.style.display = "none";
-      btn.style.display = "none";
-      if (media) {
-        media.style.display = "block";
-        if (media.tagName === "VIDEO") media.play().catch(() => {});
-      }
-      if (wrap.dataset.fullscreenOnPlay === "true" && media) {
-        const requestFs =
-          media.requestFullscreen ||
-          media.webkitRequestFullscreen ||
-          media.mozRequestFullScreen ||
-          media.msRequestFullscreen;
-        if (requestFs) requestFs.call(media).catch(() => {});
-      }
+      const media = wrap.querySelector(".figure__yt");
+      if (!media) return;
+      const requestFs =
+        media.requestFullscreen ||
+        media.webkitRequestFullscreen ||
+        media.mozRequestFullScreen ||
+        media.msRequestFullscreen;
+      if (requestFs) requestFs.call(media).catch(() => {});
     });
   });
 }
